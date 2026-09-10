@@ -1,3 +1,4 @@
+
 #!/data/data/com.termux/files/usr/bin/bash
 
 clear
@@ -54,7 +55,7 @@ echo -e "\${COLOR}"
 figlet "$TEXTO"
 echo -e "\${RESET}"
 
-echo -e "\${AMARILLO}Creado por : \${RESET}kinsupremo"
+echo -e "\${AMARILLO}Creado por : \${RESET}kingsupremo"
 echo
 EOF
 
