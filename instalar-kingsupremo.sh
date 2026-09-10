@@ -2,18 +2,17 @@
 
 clear
 
-TURQUESA='\033[1;36m'
+VERDE='\033[1;32m'
 AMARILLO='\033[1;33m'
 ROJO='\033[1;31m'
-VERDE='\033[1;32m'
+TURQUESA='\033[1;36m'
 RESET='\033[0m'
 
-echo -e "${TURQUESA}"
+echo -e "${VERDE}"
 echo "=========================================="
 echo "          KINGSUPREMO BANNER"
 echo "=========================================="
 echo -e "${RESET}"
-echo
 
 pkg install figlet -y
 
@@ -23,14 +22,31 @@ read -rp "Escribe el texto de tu banner: " TEXTO
 cat > "$HOME/kingsupremo-banner.sh" <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
-TURQUESA='\033[1;36m'
+VERDE='\033[1;32m'
 AMARILLO='\033[1;33m'
 ROJO='\033[1;31m'
-VERDE='\033[1;32m'
+TURQUESA='\033[1;36m'
 RESET='\033[0m'
 
-COLORES=("$VERDE" "$AMARILLO" "$ROJO" "$TURQUESA")
-COLOR="\${COLORES[\$RANDOM % \${#COLORES[@]}]}"
+ARCHIVO="\$HOME/.kingsupremo-color"
+[ -f "\$ARCHIVO" ] || echo 0 > "\$ARCHIVO"
+
+NUM=\$(cat "\$ARCHIVO")
+
+COLORES=(
+"\$VERDE"
+"\$AMARILLO"
+"\$ROJO"
+"\$TURQUESA"
+"\$VERDE"
+"\$VERDE"
+"\$VERDE"
+"\$VERDE"
+)
+
+COLOR="\${COLORES[\$NUM]}"
+
+echo \$(( (NUM + 1) % 8 )) > "\$ARCHIVO"
 
 clear
 
@@ -54,11 +70,7 @@ bash "$HOME/kingsupremo-banner.sh"
 EOF
 
 echo
-echo -e "${VERDE}==========================================${RESET}"
-echo -e "${VERDE}          BANNER INSTALADO ✓${RESET}"
-echo -e "${VERDE}==========================================${RESET}"
-echo
-echo "Tu banner aparecerá al abrir Termux."
+echo -e "${VERDE}BANNER INSTALADO ✓${RESET}"
 echo
 
 bash "$HOME/kingsupremo-banner.sh"
